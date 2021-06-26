@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> XD53OX </title>
+</head>
+<body>
+   <div class="container">
+     <section class="grid grid-template-areas">
+        <input disabled id="input-value" class="display">
+
+        <button id="limpar" onclick="ClearInput()" class="item clear button-operations">C</button>
+        <button id="inverter" onclick="InvertValue()" class="item plus-minus button-operations">+/-</button>
+        <button id="apagar" onclick="Back()" class= "item back button-operations"><</button>
+        <button id="dividir" onclick="InsertValues('/')" class="item buttonision button-operations-right">/</button>
+        
+        <button id="sete" onclick="InsertValues('7')" class="item seven button-numbers">7</button>
+        <button id="oito" onclick="InsertValues('8')" class="item eight button-numbers">8</button>
+        <button id="nove" onclick="InsertValues('9')" class="item nine button-numbers">9</button>
+        <button id="vezes" onclick="InsertValues('*')" class="item multiplication button-operations-right">x</button>
+        
+        <button id="quatro" onclick="InsertValues('4')" class="item four button-numbers">4</button>
+        <button id="cinco" onclick="InsertValues('5')" class="item five button-numbers">5</button>
+        <button id="seis" onclick="InsertValues('6')" class="item six button-numbers">6</button>
+        <button id="menos" onclick="InsertValues('-')" class="item minus button-operations-right">-</button>
+
+        <button id="um" onclick="InsertValues('1')" class="item one button-numbers">1</button>
+        <button id="dois" onclick="InsertValues('2')" class="item two button-numbers">2</button>
+        <button id="tres" onclick="InsertValues('3')" class="item three button-numbers">3</button>
+        <button id="mais" onclick="InsertValues('+')" class="item plus button-operations-right">+</button>
+
+        <button id="zero" onclick="InsertValues('0')" class="item zero button-numbers">0</button>
+        <button id="ponto" onclick="InsertValues('.')" class="item point button-numbers">,</button>
+        <button id="resultado" onclick="calculate()" class="item equal button-operations-right">=</button>
+
+     </section>
+   </div>
+</body>
+<style>
+    * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: "Helvetica Neue", sans-serif;
+
+    }
+      
+    .container{ 
+         background: linear-gradient(#708090,#87CEEB);
+         width: 100vw;
+         height: 100vw;
+         display: grid; 
+         justify-content: center;
+         align-content: center; 
+    }
+   
+
+    .grid {
+       display: grid;
+       height: 400px;
+       width: 320px; 
+
+    }
+
+    .item {
+          color: white;
+          font-size: 20px;
+          cursor: pointer;
+          outline: none;
+          border: 0.5px solid black;
+
+          
+    }
+
+    .item:hover {
+       opacity: 0.7;
+    }
+
+    .item:active {
+       opacity: 0.3;
+       background-color: white;
+       color: #4a494f;
+    } 
+    
+    .display {
+       grid-area: display;
+       background-color: #4a494f;
+       opacity: 0.7; 
+       border: none;
+       border-top-left-radius: 4px;
+       border-top-right-radius: 4px; 
+       font-size: 30px;
+       color: white;
+       padding-left: 15px;
+    }
+    .button-operations-right {
+          background-color: #4682B4;
+    }
+    
+    .button-numbers {
+          background-color: #7575757d;
+    }
+
+    .button-operations {
+          background-color: #5a5663;
+    }
+
+    .clear {
+       grid-area: clear;
+    }
+
+    .plus-minus {
+       grid-area: plus-minus;
+    }
+
+    .back {
+       grid-area: back;
+    }
+
+    .division {
+       grid-area: division;
+    }
+
+    .multiplication {
+       grid-area: multiplication;
+    }
+
+    .plus {
+       grid-area: plus;
+    }
+
+    .minus {
+       grid-area: minus;
+    }
+
+    .equal {
+       grid-area: equal;
+    }
+
+    .point {
+       grid-area: point;
+    }
+
+    .zero {
+       grid-area: zero;
+    }
+
+    .one {
+       grid-area: one;
+    }
+
+    .two {
+       grid-area: two;
+    }
+
+    .three {
+       grid-area: three;
+    }
+
+    .four {
+       grid-area: four;
+    }
+
+    .five {
+       grid-area: five;
+    }
+
+    .six {
+       grid-area: six;
+    }
+
+    .seven {
+       grid-area: seven;
+    }
+
+    .eight {
+       grid-area: eight;
+    }
+
+    .nine {
+       grid-area: nine;
+    }
+
+    section {
+         grid-template-areas: 
+         "display display display display"
+         "clear plus-minus back division"
+         "seven eight nine multiplication"
+         "four five six minus"
+         "one two three plus"
+         "zero zero point equal"
+         ;
+
+
+
+    }
+</style>
+
+<script>
+   function InsertValues(num){
+         const input = document.getElementById('input-value').value 
+         document.getElementById('input-value').value = input + num 
+         
+      }
+   
+   function calculate(){
+         const input = document.getElementById('input-value').value
+
+         document.getElementById('input-value').value = eval(input)
+
+   }   
+ 
+   function ClearInput() {
+         document.getElementById('input-value').value = ""
+
+   }
+
+   function InvertValue() {
+         calculate()
+         const input = document.getElementById('input-value').value
+         document.getElementById('input-value').value = input * -1
+   }
+   
+   function Back() {
+   
+         const input = document.getElementById('input-value').value
+         document.getElementById('input-value').value = input.substring(0, input.length -1)
+         
+          
+   }
+   
+  document.addEventListener("keypress", function(e) {
+         
+    if(e.key === "Enter") {
+        
+        const btn = document.getElementById("resultado");
+
+        btn.click();
+    }
+          
+    if(e.key === "0") {
+        
+        const btn = document.getElementById("zero");
+
+        btn.click();
+    }
+
+          
+    if(e.key === "1") {
+        
+        const btn = document.getElementById("um");
+
+        btn.click();
+    }
+
+    if(e.key === "2") {
+        
+        const btn = document.getElementById("dois");
+
+        btn.click();
+    }
+    if(e.key === "3") {
+        
+        const btn = document.getElementById("tres");
+
+        btn.click();
+    }
+    if(e.key === "4") {
+        
+        const btn = document.getElementById("quatro");
+
+        btn.click();
+    }
+    if(e.key === "5") {
+        
+        const btn = document.getElementById("cinco");
+
+        btn.click();
+    }
+    if(e.key === "6") {
+        
+        const btn = document.getElementById("seis");
+
+        btn.click();
+    }
+    if(e.key === "7") {
+        
+        const btn = document.getElementById("sete");
+
+        btn.click();
+    }
+    if(e.key === "8") {
+        
+        const btn = document.getElementById("oito");
+
+        btn.click();
+    }
+
+    if(e.key === "9") {
+        
+        const btn = document.getElementById("nove");
+
+        btn.click();
+    }
+    if(e.key === "+") {
+        
+        const btn = document.getElementById("mais");
+
+        btn.click();
+    }
+    if(e.key === "-") {
+        
+        const btn = document.getElementById("menos");
+
+        btn.click();
+    }
+    if(e.key === "*") {
+        
+        const btn = document.getElementById("vezes");
+
+        btn.click();
+    }
+    if(e.key === "/") {
+        
+        const btn = document.getElementById("dividir");
+
+        btn.click();
+    }
+    if(e.key === ".") {
+        
+        const btn = document.getElementById("ponto");
+
+        btn.click();
+    }
+    if(e.key === ",") {
+        
+        const btn = document.getElementById("apagar");
+
+        btn.click();
+    }
+    if(e.key === "<") {
+        
+        const btn = document.getElementById("apagar");
+
+        btn.click();
+    }
+    if(e.key === "c") {
+        
+        const btn = document.getElementById("limpar");
+
+        btn.click();
+    }
+    if(e.key === "i") {
+        
+        const btn = document.getElementById("inverter");
+
+        btn.click();
+    }
+
+
+  });
+
+
+</script>
+
+
+</html>
